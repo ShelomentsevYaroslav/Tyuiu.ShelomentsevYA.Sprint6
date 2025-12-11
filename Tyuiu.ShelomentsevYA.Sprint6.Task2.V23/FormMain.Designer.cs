@@ -1,19 +1,25 @@
-﻿namespace Tyuiu.ShelomentsevYA.Sprint6.Task2.V23
+﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
+
+namespace Tyuiu.ShelomentsevYA.Sprint6.Task2.V23
 {
     partial class FormMain
     {
         private System.ComponentModel.IContainer components = null;
 
-        private System.Windows.Forms.Button btnExecute;
-        private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.DataGridView dgvOutput;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colX;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colFx;
+        private Button btnExecute;
+        private Button btnHelp;
+        private DataGridView dgvOutput;
+        private DataGridViewTextBoxColumn colX;
+        private DataGridViewTextBoxColumn colFx;
 
-        private System.Windows.Forms.GroupBox groupBoxCondition;
-        private System.Windows.Forms.Label labelCondition;
+        private GroupBox groupBoxCondition;
+        private Label labelCondition;
 
-        private System.Windows.Forms.GroupBox groupBoxResult;
+        private GroupBox groupBoxResult;
+        private Chart chartFunction;
 
         protected override void Dispose(bool disposing)
         {
@@ -26,6 +32,8 @@
 
         private void InitializeComponent()
         {
+            ChartArea chartArea1 = new ChartArea();
+            Series series1 = new Series();
             btnExecute = new Button();
             btnHelp = new Button();
             dgvOutput = new DataGridView();
@@ -34,9 +42,11 @@
             groupBoxCondition = new GroupBox();
             labelCondition = new Label();
             groupBoxResult = new GroupBox();
+            chartFunction = new Chart();
             ((System.ComponentModel.ISupportInitialize)dgvOutput).BeginInit();
             groupBoxCondition.SuspendLayout();
             groupBoxResult.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)chartFunction).BeginInit();
             SuspendLayout();
             // 
             // btnExecute
@@ -107,7 +117,7 @@
             labelCondition.Name = "labelCondition";
             labelCondition.Size = new Size(440, 145);
             labelCondition.TabIndex = 0;
-            labelCondition.Text = "Табулировать функцию:\nF(x) = 4 - 2x + (2 + cos(x)) / (2x - 2)\n\nДиапазон: [-5; 5], шаг 1.\nПри делении на ноль вернуть 0.\nРезультаты вывести в таблицу.";
+            labelCondition.Text = "Табулировать функцию:\nF(x) = 4 - 2x + (2 + cos(x)) / (2x - 2)\n\nДиапазон: [-5; 5], шаг 1.\nПри делении на ноль вернуть 0.\nРезультаты вывести в таблицу и график.";
             // 
             // groupBoxResult
             // 
@@ -115,15 +125,31 @@
             groupBoxResult.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             groupBoxResult.Location = new Point(12, 185);
             groupBoxResult.Name = "groupBoxResult";
-            groupBoxResult.Size = new Size(460, 300);
+            groupBoxResult.Size = new Size(460, 309);
             groupBoxResult.TabIndex = 1;
             groupBoxResult.TabStop = false;
             groupBoxResult.Text = "Результаты";
             // 
+            // chartFunction
+            // 
+            chartArea1.Name = "Area1";
+            chartFunction.ChartAreas.Add(chartArea1);
+            chartFunction.Location = new Point(478, 12);
+            chartFunction.Name = "chartFunction";
+            series1.ChartArea = "Area1";
+            series1.ChartType = SeriesChartType.Line;
+            series1.Name = "Series1";
+            chartFunction.Series.Add(series1);
+            chartFunction.Size = new Size(449, 482);
+            chartFunction.TabIndex = 1;
+            // 
             // FormMain
             // 
-            ClientSize = new Size(485, 560);
+            AutoScaleDimensions = new SizeF(9F, 23F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(962, 780);
             Controls.Add(groupBoxCondition);
+            Controls.Add(chartFunction);
             Controls.Add(groupBoxResult);
             Controls.Add(btnExecute);
             Controls.Add(btnHelp);
@@ -135,6 +161,7 @@
             ((System.ComponentModel.ISupportInitialize)dgvOutput).EndInit();
             groupBoxCondition.ResumeLayout(false);
             groupBoxResult.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)chartFunction).EndInit();
             ResumeLayout(false);
         }
     }
