@@ -15,9 +15,15 @@ namespace Tyuiu.ShelomentsevYA.Sprint6.Task7.V1.Lib
             for (int i = 0; i < rows; i++)
             {
                 string[] parts = lines[i].Split(';');
+
                 for (int j = 0; j < cols; j++)
                 {
-                    matrix[i, j] = int.Parse(parts[j]);
+                    int value = int.Parse(parts[j]);
+
+                    if (j == 1 && value < 0)
+                        value = 1;
+
+                    matrix[i, j] = value;
                 }
             }
 
